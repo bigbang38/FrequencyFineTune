@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro y Pago con Stripe</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <form id="payment-form">
+    <h2>Registro</h2>
+    <label for="name">Nombre Completo</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Correo Electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="address">Dirección</label>
+    <input type="text" id="address" name="address" required>
+
+    <h2>Pago</h2>
+    <div id="card-element"><!-- Elemento de la tarjeta de crédito aquí --></div>
+    <button type="submit">Pagar</button>
+  </form>
+
+  <script>
+    var stripe = Stripe('pk_test_51NoFmIQuhoVnSw93w6nRR3Eux3A5rYut0YIVPqs8VL81DpzIiOU2wCTpjtSQiunFANHxajgtLQf8n5bV1vxaI4ay00dIfNhq4D');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+  
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var address = document.getElementById('address').value;
+  
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          console.error(result.error.message);
+          alert('Error en el pago: ' + result.error.message);
+        } else {
+          fetch('/process-payment', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              token: result.token.id,
+              card: result.token.card,
+              name: name,
+              email: email,
+              address: address
+            }),
+          }).then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                console.log('Pago exitoso:', data);
+                // Realizar acciones adicionales como redirigir al usuario
+                alert('Pago exitoso para ' + name);
+                window.location.href = `/success?token=${result.token.id}&email=${email}`;
+              } else {
+                console.error('Error en el pago:', data);
+                alert('Error en el pago: ' + data.message);
+              }
+            }).catch(error => {
+              console.error('Error en el servidor:', error);
+              alert('Error en el servidor: ' + error.message);
+            });
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>
