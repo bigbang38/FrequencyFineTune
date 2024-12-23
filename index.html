@@ -4,41 +4,71 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro y Pago con Stripe</title>
-  <script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <style type="text/css">
 #payment-form h2 strong {
-    font-family: Bangers;
+	font-family: Bangers;
+	text-align: center;
 }
 #payment-form h2 {
-    font-family: Bangers;
+	font-family: Bangers;
+	text-align: center;
 }
 #payment-form label {
-    font-family: Bangers;
+	font-family: Bangers;
+	text-align: center;
+	font-size: small;
 }
 #payment-form button {
-    font-family: Bangers;
+	font-family: Bangers;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: #FFFFFF;
+	background-color: #00FF00;
+}
+a {
+	font-size: 30px;
+	padding-left: 10px;
 }
 body {
-    background-color: #9100FF;
-    background-image: url();
+	background-color: #9100FF;
+	background-image: url();
+	text-align: center;
+}
+#payment-form label {
+	text-align: center;
+}
+h1 {
+	text-align: center;
+	font-size: 40px;
 }
 body,td,th {
-    color: #FFFFFF;
-    font-family: Bangers;
-    font-style: normal;
-    font-weight: normal;
-    font-size: xx-large;
+	color: #FFFFFF;
+	font-family: Bangers;
+	font-style: normal;
+	font-weight: normal;
+	font-size: xx-large;
+	text-align: center;
+}
+td {
+	text-align: center;
 }
 </style>
 </head>
 <body>
   <form id="payment-form">
-    <h1>tangamangaming laboratories <img src="logo actualización-01.png" width="69" height="69" alt=""/></h1>
-    <table width="823" height="242" border="1">
+    <h1>tangamangaming <img src="logo actualización-01.png" width="30" height="30" alt=""/></h1>
+    <table width="800" height="95" border="1">
       <tbody>
         <tr>
-          <td width="162"><strong>Registro</strong></td>
-          <td width="629"><label for="name">Nombre Completo</label>
+          <td width="160" height="91"><strong>Registro</strong></td>
+          <td width="647">
+			<label for="name">Nombre Completo</label>
             <input type="text" id="name" name="name" required>
             <label for="email"><br>
               Correo Electrónico</label>
@@ -49,10 +79,17 @@ body,td,th {
         </tr>
       </tbody>
     </table>
-    <h2>Pago</h2>
-    <div id="card-element"><!-- Elemento de la tarjeta de crédito aquí -->  </div>
+    <table width="800" border="1">
+      <tbody>
+        <tr>
+          <td width="160" height="60">Pago</td>
+          <td width="646"><div id="card-element"><!-- Elemento de la tarjeta de crédito aquí -->  </div></td>
+        </tr>
+      </tbody>
+    </table>
+    
     <label>
-        <input type="checkbox" id="terms" name="terms" required>
+      <input type="checkbox" id="terms" name="terms" required>
         He leído y acepto los <a href="terms-and-conditions.html" target="_blank">términos y condiciones</a>
     </label>
     <button type="submit">Pagar</button>
