@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro y Pago con Stripe</title>
   <script src="https://js.stripe.com/v3/"></script>
+<style type="text/css">
+#payment-form h2 strong {
+    font-family: Bangers;
+}
+#payment-form h2 {
+    font-family: Bangers;
+}
+#payment-form label {
+    font-family: Bangers;
+}
+#payment-form button {
+    font-family: Bangers;
+}
+body {
+    background-color: #9100FF;
+    background-image: url();
+}
+body,td,th {
+    color: #FFFFFF;
+    font-family: Bangers;
+    font-style: normal;
+    font-weight: normal;
+    font-size: xx-large;
+}
+</style>
 </head>
 <body>
   <form id="payment-form">
-    <h2>Registro</h2>
-    <label for="name">Nombre Completo</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="email">Correo Electrónico</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="address">Dirección</label>
-    <input type="text" id="address" name="address" required>
-
+    <h1>tangamangaming laboratories <img src="logo actualización-01.png" width="69" height="69" alt=""/></h1>
+    <table width="823" height="242" border="1">
+      <tbody>
+        <tr>
+          <td width="162"><strong>Registro</strong></td>
+          <td width="629"><label for="name">Nombre Completo</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email"><br>
+              Correo Electrónico</label>
+            <input type="email" id="email" name="email" required>
+            <label for="address"><br>
+              Dirección</label>
+          <input type="text" id="address" name="address" required></td>
+        </tr>
+      </tbody>
+    </table>
     <h2>Pago</h2>
-    <div id="card-element"><!-- Elemento de la tarjeta de crédito aquí --></div>
+    <div id="card-element"><!-- Elemento de la tarjeta de crédito aquí -->  </div>
+    <label>
+        <input type="checkbox" id="terms" name="terms" required>
+        He leído y acepto los <a href="terms-and-conditions.html" target="_blank">términos y condiciones</a>
+    </label>
     <button type="submit">Pagar</button>
-  </form>
+</form>
 
   <script>
     var stripe = Stripe('pk_test_51NoFmIQuhoVnSw93w6nRR3Eux3A5rYut0YIVPqs8VL81DpzIiOU2wCTpjtSQiunFANHxajgtLQf8n5bV1vxaI4ay00dIfNhq4D');
@@ -36,6 +71,11 @@
       var name = document.getElementById('name').value;
       var email = document.getElementById('email').value;
       var address = document.getElementById('address').value;
+
+      if (!document.getElementById('terms').checked) {
+        alert('Debes aceptar los términos y condiciones para continuar.');
+        return;
+      }
   
       stripe.createToken(card).then(function(result) {
         if (result.error) {
@@ -73,6 +113,5 @@
       });
     });
   </script>
-  
 </body>
 </html>
