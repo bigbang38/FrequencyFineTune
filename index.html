@@ -6,34 +6,32 @@
   <title>Registro y Pago con Stripe</title>
 <script src="https://js.stripe.com/v3/"></script>
 <style type="text/css">
-#payment-form h2 strong {
-	font-family: Bangers;
-	text-align: center;
-}
-#payment-form h2 {
-	font-family: Bangers;
-	text-align: center;
-}
 #payment-form label {
 	font-family: Bangers;
 	text-align: center;
 	font-size: small;
 }
 #payment-form button {
-	font-family: Bangers;
-	text-align: center;
-	margin-top: 20px;
-	margin-left: 5px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	font-size: 20px;
-	color: #FFFFFF;
-	background-color: #00FF00;
+    font-family: Bangers;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #000000;
+    background-color: #00FF00;
 }
 a {
 	font-size: 30px;
 	padding-left: 10px;
+}
+label {
+}
+table {
+}
+form {
 }
 body {
 	background-color: #9100FF;
@@ -43,59 +41,65 @@ body {
 #payment-form label {
 	text-align: center;
 }
+table {
+}
 h1 {
 	text-align: center;
 	font-size: 40px;
 }
+button {
+}
 body,td,th {
-	color: #FFFFFF;
-	font-family: Bangers;
-	font-style: normal;
-	font-weight: normal;
-	font-size: xx-large;
-	text-align: center;
+    color: #000000;
+    font-family: Bangers;
+    font-style: normal;
+    font-weight: normal;
+    font-size: larger;
+    text-align: center;
 }
 td {
+	text-align: center;
+	background-color: #FFFFFF;
+}
+p {
+	font-size: 30px;
+}
+tbody tr td {
 	text-align: center;
 }
 </style>
 </head>
 <body>
   <form id="payment-form">
-    <h1>tangamangaming <img src="logo actualización-01.png" width="30" height="30" alt=""/></h1>
-    <table width="800" height="95" border="1">
+    <table width="500" height="433">
       <tbody>
         <tr>
-          <td width="160" height="91"><strong>Registro</strong></td>
-          <td width="647">
-			<label for="name">Nombre Completo</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email"><br>
-              Correo Electrónico</label>
-            <input type="email" id="email" name="email" required>
-            <label for="address"><br>
-              Dirección</label>
-          <input type="text" id="address" name="address" required></td>
-        </tr>
-      </tbody>
-    </table>
-    <table width="800" border="1">
-      <tbody>
-        <tr>
-          <td width="160" height="60">Pago</td>
-          <td width="646"><div id="card-element"><!-- Elemento de la tarjeta de crédito aquí -->  </div></td>
-        </tr>
-      </tbody>
-    </table>
-    
+          <td><h1>tangamangaming <img src="logo actualización-01.png" width="30" height="30" alt=""/></h1>
+    <p><strong>Registro</strong></p>
+    <p>
+      <label for="name">Nombre Completo</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email"><br>
+        Correo Electrónico</label>
+      <input type="email" id="email" name="email" required>
+      <label for="address"><br>
+        Dirección</label>
+      <input type="text" id="address" name="address" required>
+    </p>
+    <p>Pago</p>
+			  <div id="card-element"><!-- Elemento de la tarjeta de crédito aquí -->  </div>
     <label>
       <input type="checkbox" id="terms" name="terms" required>
         He leído y acepto los <a href="terms-and-conditions.html" target="_blank">términos y condiciones</a>
     </label>
-    <button type="submit">Pagar</button>
+    <button type="submit">Pagar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
 </form>
 
-  <script>
+<script>
     var stripe = Stripe('pk_test_51NoFmIQuhoVnSw93w6nRR3Eux3A5rYut0YIVPqs8VL81DpzIiOU2wCTpjtSQiunFANHxajgtLQf8n5bV1vxaI4ay00dIfNhq4D');
     var elements = stripe.elements();
     var card = elements.create('card');
